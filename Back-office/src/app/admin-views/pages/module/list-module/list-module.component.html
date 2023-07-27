@@ -1,0 +1,120 @@
+<br><br><br><br>
+<div class="search-div">
+  <button class="float-right" mat-fab color="primary" (click)="onCreate()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<br><br>
+<div class="search-container">
+  <mat-form-field class="search-field" >
+    <input matInput [(ngModel)]="productSearchKey" placeholder="Search by product name" autocomplete="off"
+      (keyup)="getProductByModule()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="productSearchKey"
+      (click)="onProductSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field class="search-field">
+    <input matInput [(ngModel)]="moduleName" placeholder="Search by module name" autocomplete="off"
+      (keyup)="getModuleByName()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="moduleName" (click)="onModuleSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field class="mat-form-field-container" >
+    <mat-label>Filter by Status</mat-label>
+    <mat-select [(value)]="moduleStatus" disableRipple  >
+          <mat-option value="All Modules" (click)="getAllModules()">All Modules</mat-option>
+          <mat-option value="Active Modules" (click)="filterByStatuS(false)"
+            [ngClass]="{'active': moduleStatus === 'true'}">Active Modules</mat-option>
+          <mat-option value="Inactive Modules" (click)="filterByStatuS(true)"
+            [ngClass]="{'inactive': moduleStatus === 'false'}">Inactive Modules</mat-option>
+        </mat-select>
+      </mat-form-field>
+</div><br><br>
+<!--<mat-form-field class="search-form-field" floatLabel="never">
+      <input matInput [(ngModel)]="moduleName" placeholder="Search by module name" autocomplete="off" (keyup)="getModuleByName()">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="moduleName" (click)="onModuleSearchClear()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>-->
+<div class="card" style="width:100%;"><br>
+  <div class="container">
+    <div class="table-responsive">
+      <table mat-table #table [dataSource]="datasource" matSort>
+        <ng-container matColumnDef="codMod">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Module Code</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.module.codMod }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="codModPack">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Module Package</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.module.codModPack }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="moduleName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Module Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.module.moduleName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="modulePackage">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Module Package </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.module.modulePackage}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="moduleStatus">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span *ngIf="element.module.moduleStatus; else inactiveIcon">
+              <mat-icon [ngStyle]="{'color':'green'}">check_circle</mat-icon>
+            </span>
+            <ng-template #inactiveIcon>
+              <mat-icon color="warn">cancel</mat-icon>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="productNames">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Products</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.productName}}
+          </mat-cell>
+        </ng-container>
+       
+        
+        <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <div>
+                <button mat-menu-item (click)="onEdit(row)">
+                  <mat-icon>update</mat-icon>
+                  <span>Update Module</span>
+                </button>
+              </div>
+            </mat-menu>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="loading">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+            Loading data....
+          </mat-footer-cell>
+        </ng-container>
+        <ng-container matColumnDef="nodata">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+            NO data....
+          </mat-footer-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['nodata']"
+          [ngClass]="{'hide': !(datasource!=null && datasource.data.length==0)}"></mat-footer-row>
+      </table>
+      <br>
+      <mat-paginator [pageSizeOptions]="[ 5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
+<br>

@@ -1,0 +1,39 @@
+<br><br>
+<div class="container">
+<!--<mat-toolbar>
+  <span> CONTACT US</span>
+  <span class="fill-remaining-space"></span>
+</mat-toolbar>-->
+<br><br><br>
+<div class="form-container">
+  <form [formGroup]="contactService.form" (ngSubmit)="onSubmit(); submitted = true;">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required>
+      <mat-error *ngIf="contactService.form.controls['email'].errors?.required">this field is mandatory !.</mat-error>
+      <mat-error *ngIf="contactService.form.get('email')?.hasError('email')">Please enter a valid email address.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Company Name</mat-label>
+      <input matInput formControlName="companyName" required>
+      <mat-error *ngIf="contactService.form.controls['companyName'].errors?.required">this field is mandatory !.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject</mat-label>
+      <input matInput formControlName="object" required>
+      <mat-error *ngIf="contactService.form.controls['object'].errors?.required">this field is mandatory !.</mat-error>
+    </mat-form-field>
+    <div class="row">
+      <ckeditor [config]='config' [required]="true" name="editor" class="ckeditor" formControlName="text" #ckeditor>
+      </ckeditor>
+     <!----<mat-error *ngIf="(contactService.form.controls['text'].invalid && submitted ) || (contactService.form.controls['text'].invalid  && contactService.form.controls['text'].dirty || contactService.form.controls['text'].touched)">
+        this field is mandatory !.
+      </mat-error>-->
+    </div>
+    <br>
+    <div class="form-container">
+      <button mat-raised-button color="primary" type="submit">Send</button>
+    </div>
+  </form>
+</div>
+</div>

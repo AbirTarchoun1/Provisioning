@@ -1,0 +1,30 @@
+<br><br><br><br><br><br>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of filteredProducts"  [@activeProduct]="product.productStatus ? 'true' : 'false'">
+      <div class="card product-card" [class.locked]="!product.productStatus" [class.disabled]="!product.productStatus">
+        <div class="card-img-top-wrapper">
+          <img class="card-img-top" src="{{PathImage + product.fileName}}" alt="{{product.productName}}">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{product.productName}}</h5>
+          <p class="card-text">
+            <span class="nav-label"><b>Version</b> {{product.productVersion }}</span><br>
+            <span class="nav-label"><b>Code Product</b> {{product.codProd}}</span>
+          </p>
+          <ng-container *ngIf="selectedProduct  === product">
+            <div class="module-card" *ngFor="let access of accesss">
+              <ng-container *ngFor="let moduleName of access.moduleName">
+                <button mat-raised-button class="module-button">{{ moduleName }}</button>&nbsp;
+              </ng-container>
+            </div>
+          </ng-container>
+          <div class="card-actions">
+            <div class="lock-icon"
+              [ngClass]="{'unlock-icon': product.productStatus, 'unlock-icon-red': !product.productStatus}">
+              <mat-icon>{{ product.productStatus ? 'lock_open' : 'lock_outline' }}</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

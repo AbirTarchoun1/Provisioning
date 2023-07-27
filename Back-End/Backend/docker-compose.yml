@@ -1,0 +1,46 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8088:80"
+    networks:
+      - network-app
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8089:80"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Port=5432;User Id=TP-DEV;Password=dev2023!;Database=TP-Provisioning;IntegratedSecurity=true;
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - network-app
+
+  db:
+    container_name: db
+    image: postgres:latest 
+    environment:
+      - POSTGRES_USER=TP-DEV
+      - POSTGRES_PASSWORD=dev2023!
+      - POSTGRES_DB=TP-Provisioning
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - postgres_volume_local:/var/lib/postgresql/data
+    networks:
+      - network-app
+
+volumes:
+  postgres_volume_local:
+    external: true
+
+networks:
+  network-app:

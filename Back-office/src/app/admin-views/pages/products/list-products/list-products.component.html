@@ -1,0 +1,58 @@
+<br><br><br><br><br>
+<div class="filter-container" >
+  <div class="filter-left">
+    <button mat-fab color="primary" (click)="onCreateproduct()" class="add-button" >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div class="filter-left">
+    <mat-form-field class="mat-form-field-container" appearance="outline">
+      <mat-label>Filter by Status</mat-label>
+      <mat-select [(value)]="productStatus" disableRipple>
+        <mat-option value="All Products" (click)="getProducts()">All Products</mat-option>
+        <mat-option value="Active Products" (click)="filterByStatus(true)"
+          [ngClass]="{'active': productStatus === 'true'}">Active Products</mat-option>
+        <mat-option value="Inactive Products" (click)="filterByStatus(false)"
+          [ngClass]="{'active': productStatus === 'false'}">Inactive Products</mat-option>
+      </mat-select>
+    </mat-form-field>&nbsp;&nbsp;
+    <mat-form-field class="mat-form-field-container" appearance="outline">
+      <mat-label> Product by Modules</mat-label>
+      <mat-select disableRipple>
+        <mat-option *ngFor="let product of filteredProducts" (click)="filterAccessModulesProduct(product)"
+          [value]="product">{{product.productName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<br><br>
+<div class="row" >
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of filteredProducts">
+    <div class="card product-card" [class.locked]="!product.productStatus" >
+      <div class="card-img-top-wrapper"  [matTooltip]="'Modules'" > 
+        <img class="card-img-top" src="{{PathImage + product.fileName}}" alt="{{product.productName}}" >
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{product.productName}}</h5>
+        <p class="card-text">
+          <span class="nav-label"><b>Version</b> {{product.productVersion }}</span><br>
+          <span class="nav-label"><b>Code Product</b> {{product.codProd}}</span>
+        </p>
+        <ng-container *ngIf="selectedProduct  === product">
+          <div class="module-card" *ngFor="let access of accesss">
+            <ng-container *ngFor="let moduleName of access.moduleName">
+              <button mat-raised-button class="module-button">{{ moduleName }}</button>&nbsp;
+            </ng-container>
+          </div>
+        </ng-container>
+        <div class="card-actions">
+          <button mat-icon-button class="edit-button"
+            (click)="onEditproduct(product)"><mat-icon>edit_outline</mat-icon></button>
+          <div class="lock-icon"
+            [ngClass]="{'unlock-icon': product.productStatus, 'unlock-icon-red': !product.productStatus}">
+            <mat-icon>{{ product.productStatus ? 'lock_open' : 'lock_outline' }}</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,15 @@
+
+
+# various zip files
+*.zip
+*.7z
+*.rar
+
+# backup files
+*.backup
+
+# vs cache files
+/.vs
+/*/bin
+/*/obj
+

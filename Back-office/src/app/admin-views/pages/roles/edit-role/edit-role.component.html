@@ -1,0 +1,51 @@
+<mat-toolbar>
+    <span> Update Role</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()"
+        tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar><br><br>
+<div class="container ">
+    <div class="col-md-12">
+        <form name="form" (submit)="onSubmit()" [formGroup]="accessService.form">
+            <div class="row">
+                <mat-form-field appearance="outline">
+                  <mat-label> Role Name </mat-label>
+                  <input matInput  name="accessName" formControlName="accessName" [readonly]="accessService.form.controls['accessId'].value" required
+                      placeholder="access Name"/>
+                      <mat-error *ngIf="accessService.form.controls['accessName'].errors?.required">this field is mandatory.
+                      </mat-error>
+                </mat-form-field>
+              </div> 
+            <div class="form-group">
+                <select class="form-control" formControlName="productId" placeholder=" choose product">
+                    <option value="" disabled selected> Choose product</option>
+                    <option *ngFor="let products of productServices" [value]="products.productId">
+                        {{products.productName}}
+                    </option>
+                </select>
+            </div>
+            <mat-label>Modules</mat-label>
+            <div class="form-group"><br>
+                <div class="scrollable">
+                    <div *ngFor="let modules of moduleServices">
+                        <div class="form-check formControl">
+                            <input type="checkbox" class="form-check-input" [value]="modules.moduleId"
+                                (change)="onModuleSelectionChange($event)"
+                                [checked]="isModuleSelected(modules.moduleId)">
+                            <mat-label> {{modules.moduleName}}</mat-label>
+                        </div>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="button-row">
+                <button mat-raised-button mat-dialog-close color="primary" type="submit">
+                    <mat-icon>save</mat-icon> Save
+                </button>
+                <button mat-raised-button mat-dialog-close>
+                    <mat-icon>close</mat-icon>Cancel
+                </button>
+                <button mat-raised-button (click)="onClear()">Clear</button>
+            </div>
+        </form>
+    </div>
+</div>

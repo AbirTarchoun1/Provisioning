@@ -1,0 +1,64 @@
+/*
+ contact CSS
+
+*/
+  
+    form {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+  
+      mat-form-field {
+        width: 100%;
+      }
+  
+      .button-container {
+        display: flex;
+        justify-content: center;
+      }
+    
+  
+      mat-toolbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        font-size: 17px;
+        font-weight: bold;
+        border-bottom: 2px solid #b5b2b2;
+      }
+      
+    @media (max-width: 768px) {
+      form {
+        max-width: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      mat-toolbar {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+      }
+    }
+    
+    @media screen and (max-width: 600px) {
+      mat-error {
+        font-size: 12px;
+      }
+    }
+
+
+    /*
+    Ckeditor 
+
+    */
+    
+    
+    .ckeditor {
+      width: 100%;
+    }

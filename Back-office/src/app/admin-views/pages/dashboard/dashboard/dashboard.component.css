@@ -1,0 +1,101 @@
+
+.small-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+    color: #fff;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.small-box:hover .small-box-footer {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.small-box:hover .icon {
+    transform: translateY(-50%);
+}
+
+.small-box:hover .inner {
+    transform: translateY(-50%);
+}
+
+.small-box:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.small-box .icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    text-align: center;
+    width: 50px;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.small-box .inner {
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+    margin-left: 50px;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.small-box h4 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    color: #fff;
+}
+
+.small-box p {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.small-box.bg-info .icon,
+.small-box.bg-success .icon,
+.small-box.bg-warning .icon,
+.small-box.bg-danger .icon {
+    color: #fff;
+}
+
+.small-box.bg-info .icon,
+.small-box.bg-info .inner {
+    background: linear-gradient(to bottom, #17a2b8 0%, #007bff 100%);
+}
+
+.small-box.bg-success .icon,
+.small-box.bg-success .inner {
+    background: linear-gradient(to bottom, #28a745 0%, #20c997 100%);
+}
+
+.small-box.bg-warning .icon,
+.small-box.bg-warning .inner {
+    background: linear-gradient(to bottom, #ffc107 0%, #fd7e14 100%);
+}
+
+.small-box.bg-danger .icon,
+.small-box.bg-danger .inner {
+    background: linear-gradient(to bottom, #dc3545 0%, #f80e2a 100%);
+}
+
+
+
+
+

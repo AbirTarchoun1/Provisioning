@@ -1,0 +1,135 @@
+
+/* Product Card */
+  
+  .product-card {
+    height: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-img-top-wrapper {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .card-img-top {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  
+  .product-card:hover .card-actions {
+    opacity: 1;
+  }
+  
+  
+  .lock-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .unlock-icon {
+    color: green;
+  }
+  
+  .unlock-icon-red {
+    color: red;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+  }
+  
+  /* row */
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+  }
+  
+  .col-12,
+  .col-sm-6,
+  .col-md-4,
+  .col-lg-3 {
+    padding: 15px;
+    box-sizing: border-box;
+  }
+  
+  .card.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-body {
+    flex-grow: 1;
+  }
+  
+  @media (max-width: 767px) {
+    .card.product-card {
+      max-width: 100%;
+    }
+  }
+  /* CSS Modules */
+  
+  
+  .module-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  
+  
+  @media screen and (min-width: 480px) {
+    .module-button {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    .module-button {
+      font-size: 18px;
+      padding: 10px 20px;
+    }
+  }
+  
+  @media screen and (min-width: 992px) {
+    .module-button {
+      font-size: 20px;
+      padding: 12px 24px;
+    }
+  }
+  .module-card {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  
+  .module-button {
+    
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+ 
+  .disabled {
+    opacity: 0.5; 
+    pointer-events: none;
+  }

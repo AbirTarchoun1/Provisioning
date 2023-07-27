@@ -1,0 +1,90 @@
+
+.fill-remaining-space{
+    flex: 1 1 auto;
+  }
+  form.normal-form{
+  margin: 10px;
+  }
+ 
+  
+    .fill-remaining-space {
+      flex: 2 2 auto;
+    }
+  
+    .vap-icon {
+      padding: 0 10px;
+    }
+  
+    .mat-elevation-z5 {
+      position: relative;
+      z-index: 2;
+      }
+  
+  
+  .full-width{
+    width: 100%;
+    
+  }
+
+  .inline-radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+ 
+  .mat-radio-group {
+    display: flex;
+  }
+  
+ 
+  
+  @media only screen and (max-width: 600px) {
+    .container {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  }
+  .activation-period {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+.mat-label {
+    margin-right: 1rem;
+    font-weight: bold;
+    font-size: 16px;
+  }
+.mat-radio-button {
+    margin-right: 1rem;
+    font-size: 16px;
+  }
+
+  .quarterly.mat-radio-button {
+    font-size: 10px;
+  }
+.bi-annually.mat-radio-button {
+    font-size: 10px;
+  }
+
+ .annually.mat-radio-button {
+    font-size: 10px;
+  }
+   .custom-radio-group .mat-radio-button{
+    font-size: 10px;
+  }
+  
+  
+  .custom-label {
+    color: blue;
+  }

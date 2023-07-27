@@ -1,0 +1,103 @@
+<mat-toolbar>
+  <span>Add License</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()"
+    tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar><br><br>
+<div class="container ">
+  <form name="form" [formGroup]="licenseService.form">
+   <div class="form-group">
+      <select color="primary" class="form-select" formControlName="userId" placeholder="choose a user"
+        (change)="onChangeuser($event)">
+        <option value="" disabled selected hidden>Choose a user</option>
+        <option color="primary" *ngFor="let users of userServices" [value]="users.userId">
+          {{users.username}}
+        </option>
+      </select>
+    </div>
+   <!--  <div class="form-group">
+      <select color="primary" class="form-select" formControlName="productId" placeholder="choose a product"
+        (change)="onChangeproduct($event)">
+        <option value="" disabled selected hidden>Choose a product</option>
+        <option color="primary" *ngFor="let products of productServices" [value]="products.productId">
+          {{products.productName}}
+        </option>
+      </select>
+    </div> -->
+
+    <div class="form-group">
+      <select color="primary" class="form-select" formControlName="accessId"  [(ngModel)]="selectedAccessId"
+      (change)="onChangeaccess($event)">
+        <option value="" disabled selected hidden>Choose Package</option>
+        <option *ngFor="let access of accessServices" [value]="access.accessId">
+          {{access.accessName}}
+        </option>
+      </select>
+    </div>
+    <!-- <div class="form-group" *ngIf="selectedAccessId">
+      <select class="form-select" formControlName="moduleId" placeholder="Module">
+        <option value="" disabled selected hidden>Choose a module</option>
+        <option *ngFor="let module of filteredModules" [value]="module.moduleId">
+          {{module.moduleName}}
+        </option>
+      </select>
+    </div> -->
+  <!----<div class="form-group" *ngIf="selectedAccessId">
+      <select class="form-control" formControlName="moduleId" placeholder="Module">
+        <option value="" disabled selected hidden>Choose a module</option>
+        <option *ngFor="let module of filteredModules" [value]="module.moduleId">
+          {{module.moduleName}}
+        </option>
+      </select>
+    </div>-->
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose Start date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="month"></mat-datepicker>
+          <mat-error *ngIf="licenseService.form.controls.startDate.errors?.required">
+            Start date is required !
+          </mat-error>
+          <mat-error *ngIf="licenseService.form.controls.startDate.errors?.startDateInvalid">
+            Start date cannot be before today's date
+          </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-label class="custom-label">Activation Period </mat-label><br><br>
+      <mat-radio-group formControlName="activationMonths">
+        <mat-radio-button class="quarterly" color="primary" value="3">
+          <mat-label>Quarterly</mat-label>
+        </mat-radio-button>
+        <mat-radio-button class="bi-annually" color="primary" value="6">
+          <mat-label>Bi-annually</mat-label>
+        </mat-radio-button>
+        <mat-radio-button class="annually" color="primary" value="12">
+          <mat-label>Annually</mat-label>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div><br>
+    <div class="row">
+      <mat-label color="primary" class="custom-label">Renew Mode</mat-label><br><br>
+      <mat-radio-group formControlName="renewMode" class="custom-radio-group">
+        <mat-radio-button color="primary" value="automatic" class="custom-radio-button">
+          <mat-label>Automatic</mat-label>
+        </mat-radio-button>&nbsp;&nbsp;
+        <mat-radio-button color="primary" value="on-demand" class="custom-radio-button">
+          <mat-label>On-Demand</mat-label>
+        </mat-radio-button>&nbsp;&nbsp;
+      </mat-radio-group>
+    </div><br>
+    <mat-checkbox color="primary" formControlName="licenseStatus"><mat-label>Enable License</mat-label> </mat-checkbox>
+    <br><br>
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" (click)="saveLicense()">
+        <mat-icon>save</mat-icon> Save
+      </button>&nbsp;&nbsp;
+      <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon>Cancel
+      </button><br>
+    </div>
+  </form>
+</div>
